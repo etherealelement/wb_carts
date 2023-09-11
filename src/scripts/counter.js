@@ -44,10 +44,18 @@ window.addEventListener("DOMContentLoaded", () => {
 				input.value--;
 				setTotalPrice(Number(totalPriceWrapper.dataset.value) - Number(input.dataset.price));
 				break;
-
 			default:
 				break;
 		}
+
+		const itemArr = document.querySelectorAll(".order__counter-spn");
+
+	let data = [];
+	for (const item of itemArr) {
+		data.push(+item.value)
+	}
+
+	document.querySelector(".sum__item-text").innerText = `${data.slice(0,3).reduce((a,c) => a + c,0)} товара`
 
 		item.querySelector(".order__total-price").textContent = `${formatNumber(getItemSubTotalPrice(input))} сом`;
 	};
@@ -76,5 +84,8 @@ window.addEventListener("DOMContentLoaded", () => {
 				);
 			}
 		});
+
+		
 	});
+
 });
